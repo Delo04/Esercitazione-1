@@ -1,6 +1,8 @@
 /*! @file CPower.h
-    @brief Derived class implementing a power function: f(x) = k * x^e
-    @author Mattia De Lorenzi
+    @brief Derived class implementing a power function
+    @author Mattia De Lorenzi e Matteo Abrate
+
+    Details.
 */
 
 #ifndef CPOWER_H
@@ -18,26 +20,27 @@ private:
 public:
     /// @name CONSTRUCTORS/DESTRUCTOR
     /// @{
-    Power();                                        // Default constructor
-    Power(double k, double e);                      // Parameterized constructor
-    Power(const Power& other);                      // Copy constructor
-    virtual ~Power();                               // Destructor
+    Power();                                        // costruttore di default
+    Power(double k, double e);                      // costruttore con parametri
+    Power(const Power& other);                      // costruttore di copia
+    virtual ~Power();                               // distruttore
     /// @}
 
     /// @name OPERATORS
     /// @{
-    Power& operator=(const Power& other);           // Assignment operator
-    bool operator==(const Power& other) const;      // Equality operator
+    Power& operator=(const Power& other);           // operatore di assegnazione
+    bool operator==(const Power& other) const;      // operatore di confronto
     /// @}
 
-    /// @name GETTERS
-    /// @{
-    virtual double GetValue(double in) const override;
-    /// @}
+	void SetParameters(double e, double k);
+    double GetValue(double in) const override;
 
     /// @name DEBUG
     /// @{
-    virtual void Dump() override;
+	void ErrorMessage(const char* string);
+    void WarningMessage(const char* string);
+    bool infiniteOrNaN(double val) const;
+	void Dump() override;
     /// @}
 };
 
